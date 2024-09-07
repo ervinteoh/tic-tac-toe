@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <ApplicationIcon>Content\TicTacToe.ico</ApplicationIcon>
+    <Authors>Jie Sheng Teoh</Authors>
+    <Description>A Tic-Tac-Toe game featuring multiple game variants.</Description>
+    <Copyright>Jie Sheng Teoh © 2024</Copyright>
+    <Version>1.0.0</Version>
+    <Product>Tic-Tac-Toe Game</Product>
+    <RepositoryUrl>https://github.com/ervinteoh/tic-tac-toe</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Content\TicTacToe.ico" />
+  </ItemGroup>
+
+</Project>
