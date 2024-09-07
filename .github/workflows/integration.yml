@@ -1,0 +1,57 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - develop
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: tic-tac-toe
+
+      - name: Build Solution
+        working-directory: tic-tac-toe
+        run: dotnet build TicTacToe/TicTacToe.csproj -c Release
+  
+      - name: Build Test Project
+        working-directory: tic-tac-toe
+        run: dotnet build TicTacToe.Test/TicTacToe.Test.csproj -c Release
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tic-tac-toe-release
+          path: |
+            tic-tac-toe/TicTacToe/bin/Release
+            tic-tac-toe/TicTacToe.Test/bin/Release
+          retention-days: 7
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: tic-tac-toe
+
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: tic-tac-toe-release
+          path: tic-tac-toe
+
+      - name: Run Test
+        working-directory: tic-tac-toe/TicTacToe.Test
+        run: dotnet test
