@@ -1,6 +1,4 @@
-﻿using TicTacToe.Models;
-
-namespace TicTacToe;
+﻿namespace TicTacToe.Models;
 
 /// <summary>
 /// Represents a game board with a fixed dimension.
