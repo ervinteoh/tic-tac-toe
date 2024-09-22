@@ -19,9 +19,7 @@ public class MainMenu : BaseScreen
     /// </summary>
     public Menu? Selection { get; private set; }
 
-    /// <summary>
-    /// Draws the main menu on the console.
-    /// </summary>
+    /// <inheritdoc />
     public override void Draw()
     {
         DrawHeader();
@@ -34,9 +32,7 @@ public class MainMenu : BaseScreen
         DrawFooter("Use arrow keys to move, press Enter to select.");
     }
 
-    /// <summary>
-    /// Handles the user input for navigating the main menu.
-    /// </summary>
+    /// <inheritdoc />
     public override void Input()
     {
         var input = _inputs.FirstOrDefault(x => x.Focused, _inputs.First()); // Gets the focused input

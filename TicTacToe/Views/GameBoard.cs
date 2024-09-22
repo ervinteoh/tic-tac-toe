@@ -8,7 +8,9 @@ namespace TicTacToe.Views;
 /// </summary>
 public class GameBoard(Board board) : BaseScreen
 {
-    // Backing field for the board state
+    /// <summary>
+    /// Backing field for the board state
+    /// </summary>
     private readonly Board _board = board;
 
     /// <summary>
