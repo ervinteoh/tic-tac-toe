@@ -40,7 +40,7 @@ public partial class FormInput<TEnum>(TEnum command, char? icon, int width, bool
     /// <summary>
     /// Generates display text by inserting spaces in PascalCase.
     /// </summary>
-    public string Text => MedialCapitals().Replace(Command.ToString(), " $1");
+    public virtual string Text => MedialCapitals().Replace(Command.ToString(), " $1");
 
     /// <summary>
     /// Renders the input as a bordered string.
@@ -71,5 +71,5 @@ public partial class FormInput<TEnum>(TEnum command, char? icon, int width, bool
     /// </summary>
     /// <returns>A regex object that adds spaces in PascalCase strings.</returns>
     [GeneratedRegex("(\\B[A-Z])")]
-    private partial Regex MedialCapitals();
+    protected partial Regex MedialCapitals();
 }
