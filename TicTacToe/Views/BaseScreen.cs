@@ -25,7 +25,7 @@ public abstract class BaseScreen
     /// <summary>
     /// The height of the content area inside the screen.
     /// </summary>
-    protected const int ContentHeight = 16;
+    protected const int ContentHeight = 19;
 
     /// <summary>
     /// Draws a single line with optional content, centered between borders.
