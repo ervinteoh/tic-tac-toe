@@ -1,4 +1,6 @@
-﻿namespace TicTacToe.Views;
+﻿using TicTacToe.Views.Components;
+
+namespace TicTacToe.Views;
 
 /// <summary>
 /// Represents the main menu screen with navigation using arrow keys and selection with Enter.
@@ -8,7 +10,7 @@ public class MainMenu : BaseScreen
     /// <summary>
     /// Menu options as form inputs.
     /// </summary>
-    private readonly IList<FormInput<Menu>> _inputs = [
+    private readonly IList<FormButton<Menu>> _inputs = [
         new(Menu.NewGame, '→', ContentWidth * 80 / 100, true), // Focused by default
         new(Menu.ViewPlayers, '↗', ContentWidth * 80 / 100),
         new(Menu.ExitGame, '←', ContentWidth * 80 / 100),
@@ -23,12 +25,12 @@ public class MainMenu : BaseScreen
     public override void Draw()
     {
         DrawHeader();
-        DrawPadding(_inputs.Count * FormInput<Menu>.Height);
+        DrawPadding(_inputs.Count * FormButton<Menu>.Height);
         foreach (var input in _inputs)
         {
             input.ToString().Split('\n').ToList().ForEach(x => DrawLine('║', '║', x));
         }
-        DrawPadding(_inputs.Count * FormInput<Menu>.Height);
+        DrawPadding(_inputs.Count * FormButton<Menu>.Height);
         DrawFooter("Use arrow keys to move, press Enter to select.");
     }
 

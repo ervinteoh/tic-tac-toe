@@ -1,26 +1,20 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace TicTacToe.Views;
+namespace TicTacToe.Views.Components;
 
 /// <summary>
 /// Represents a form input using a command enum, optional icon, and width.
 /// </summary>
-/// <typeparam name="TEnum">Enum type for the command.</typeparam>
-/// <param name="command">Associated command.</param>
+/// <param name="text">Input text.</param>
 /// <param name="icon">Optional icon.</param>
 /// <param name="width">Input width.</param>
 /// <param name="focused">Focus state (default: false).</param>
-public partial class FormInput<TEnum>(TEnum command, char? icon, int width, bool focused = false) where TEnum : Enum
+public partial class FormInput(string text, char? icon, int width, bool focused = false)
 {
     /// <summary>
     /// Constant height of the form input.
     /// </summary>
     public static readonly int Height = 3;
-
-    /// <summary>
-    /// Command associated with the input.
-    /// </summary>
-    public TEnum Command { get; } = command;
 
     /// <summary>
     /// Optional icon next to the input text.
@@ -38,9 +32,9 @@ public partial class FormInput<TEnum>(TEnum command, char? icon, int width, bool
     public bool Focused { get; set; } = focused;
 
     /// <summary>
-    /// Generates display text by inserting spaces in PascalCase.
+    /// Display text of the form input.
     /// </summary>
-    public virtual string Text => MedialCapitals().Replace(Command.ToString(), " $1");
+    public virtual string Text => text;
 
     /// <summary>
     /// Renders the input as a bordered string.
@@ -71,5 +65,5 @@ public partial class FormInput<TEnum>(TEnum command, char? icon, int width, bool
     /// </summary>
     /// <returns>A regex object that adds spaces in PascalCase strings.</returns>
     [GeneratedRegex("(\\B[A-Z])")]
-    protected partial Regex MedialCapitals();
+    protected static partial Regex MedialCapitals();
 }

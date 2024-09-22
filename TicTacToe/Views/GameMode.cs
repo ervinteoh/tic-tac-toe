@@ -1,4 +1,5 @@
 ﻿using TicTacToe.Models;
+using TicTacToe.Views.Components;
 
 namespace TicTacToe.Views;
 
@@ -7,9 +8,9 @@ public class GameMode : BaseScreen
     /// <summary>
     /// Menu options as form inputs.
     /// </summary>
-    private readonly IList<FormInput<Setting>> _inputs = [
-        new FormSelect<Setting, Mode>(Setting.Mode, '→', ContentWidth * 80 / 100, true),
-        new FormInput<Setting>(Setting.Confirm, '↗', ContentWidth * 80 / 100, false),
+    private readonly IList<FormInput> _inputs = [
+        new FormSelect<Mode>(nameof(Mode), '→', ContentWidth * 80 / 100, true),
+        new FormInput("Confirm", '↗', ContentWidth * 80 / 100, false),
     ];
 
     /// <summary>
@@ -20,15 +21,13 @@ public class GameMode : BaseScreen
     /// <inheritdoc />
     public override void Draw()
     {
-        var confirm = new FormInput<Setting>(Setting.Confirm, '↗', ContentWidth * 80 / 100, true);
-
         DrawHeader();
-        DrawPadding(FormInput<Setting>.Height * 2);
+        DrawPadding(FormInput.Height * 2);
         foreach (var input in _inputs)
         {
             input.ToString().Split('\n').ToList().ForEach(x => DrawLine('║', '║', x));
         }
-        DrawPadding(FormInput<Setting>.Height * 2);
+        DrawPadding(FormInput.Height * 2);
         DrawFooter("Use right arrow key to change mode.");
     }
 
@@ -54,31 +53,15 @@ public class GameMode : BaseScreen
                 }
                 break;
             case ConsoleKey.RightArrow:
-                if (_inputs[index] is FormSelect<Setting, Mode> selectMode)
+                if (_inputs[index] is FormSelect<Mode> selectMode)
                     selectMode.Next();
                 break;
             case ConsoleKey.Enter:
-                if (_inputs[index].Command == Setting.Confirm)
+                if (index == _inputs.Count - 1)
                     Confimed = true;
                 break;
             default:
                 break;
         }
     }
-}
-
-/// <summary>
-/// Represents the options available in the game mode.
-/// </summary>
-public enum Setting
-{
-    /// <summary>
-    /// Selects the game mode.
-    /// </summary>
-    Mode,
-
-    /// <summary>
-    /// Confirms the game mode.
-    /// </summary>
-    Confirm
 }

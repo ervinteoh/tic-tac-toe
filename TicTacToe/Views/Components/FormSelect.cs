@@ -1,12 +1,15 @@
-﻿namespace TicTacToe.Views;
+﻿namespace TicTacToe.Views.Components;
 
 /// <summary>
-/// Represents a form input that allows selection of a command and mode.
+/// Represents a form input that allows enum selection.
 /// </summary>
-/// <typeparam name="TEnum">The type of the command enum.</typeparam>
+/// <param name="text">Input text.</param>
+/// <param name="icon">Optional icon.</param>
+/// <param name="width">Input width.</param>
+/// <param name="focused">Focus state (default: false).</param>
 /// <typeparam name="TSelect">The type of the selection enum.</typeparam>
-public class FormSelect<TEnum, TSelect>(TEnum command, char icon, int width, bool focused = false) :
-    FormInput<TEnum>(command, icon, width, focused) where TEnum : Enum where TSelect : Enum
+public class FormSelect<TSelect>(string text, char icon, int width, bool focused = false) :
+    FormInput(text, icon, width, focused) where TSelect : Enum
 {
     /// <summary>
     /// Gets the current selection of the enum type <typeparamref name="TSelect"/>.
@@ -14,7 +17,7 @@ public class FormSelect<TEnum, TSelect>(TEnum command, char icon, int width, boo
     public TSelect Selection { get; private set; } = default!;
 
     /// <inheritdoc />
-    public override string Text => $"Mode: {MedialCapitals().Replace(Selection.ToString(), " $1")}";
+    public override string Text => $"{base.Text}: {MedialCapitals().Replace(Selection.ToString(), " $1")}";
 
     /// <summary>
     /// Advances the current selection to the next enum value in <typeparamref name="TSelect"/>.
