@@ -101,7 +101,7 @@ public class GameBoard(Board board) : BaseScreen
 
         DrawHeader();
         DrawPadding(_board.Dimension * (CellHeight + 1) + 1);
-        board.ForEach(row => DrawLine(content: row));
+        board.ForEach(row => DrawLine(row));
         DrawPadding(_board.Dimension * (CellHeight + 1) + 1);
         DrawFooter("");
     }

@@ -26,10 +26,7 @@ public class MainMenu : BaseScreen
     {
         DrawHeader();
         DrawPadding(_inputs.Count * FormButton<Menu>.Height);
-        foreach (var input in _inputs)
-        {
-            input.ToString().Split('\n').ToList().ForEach(x => DrawLine('║', '║', x));
-        }
+        _inputs.ToList().ForEach(input => input.ToString().Split('\n').ToList().ForEach(x => DrawLine(x)));
         DrawPadding(_inputs.Count * FormButton<Menu>.Height);
         DrawFooter("Use arrow keys to move, press Enter to select.");
     }

@@ -30,11 +30,11 @@ public abstract class BaseScreen
     /// <summary>
     /// Draws a single line with optional content, centered between borders.
     /// </summary>
+    /// <param name="content">Optional string content to display. If null, the line is blank.</param>
     /// <param name="leftBorder">Character for the left border. Defaults to '║'.</param>
     /// <param name="rightBorder">Character for the right border. Defaults to '║'.</param>
-    /// <param name="content">Optional string content to display. If null, the line is blank.</param>
     /// <exception cref="ArgumentException">Thrown if the content length exceeds the ContentWidth.</exception>
-    protected static void DrawLine(char leftBorder = '║', char rightBorder = '║', string? content = null)
+    protected static void DrawLine(string? content = null, char leftBorder = '║', char rightBorder = '║')
     {
         if (content != null && content.Length > ContentWidth)
         {
@@ -55,10 +55,10 @@ public abstract class BaseScreen
     /// </summary>
     protected static void DrawHeader()
     {
-        DrawLine('╔', '╗', new string('═', ContentWidth));
-        Title.Trim('\r', '\n').Split('\n').ToList().ForEach(line => DrawLine(content: line.TrimEnd('\r', '\n')));
+        DrawLine(new string('═', ContentWidth), '╔', '╗');
+        Title.Trim('\r', '\n').Split('\n').ToList().ForEach(line => DrawLine(line.TrimEnd('\r', '\n')));
         DrawLine();
-        DrawLine('╠', '╣', new string('═', ContentWidth));
+        DrawLine(new string('═', ContentWidth), '╠', '╣');
     }
 
     /// <summary>
@@ -67,9 +67,9 @@ public abstract class BaseScreen
     /// <param name="text">The message to display in the footer.</param>
     protected static void DrawFooter(string text)
     {
-        DrawLine('╠', '╣', new string('═', ContentWidth));
-        DrawLine(content: text);
-        DrawLine('╚', '╝', new string('═', ContentWidth));
+        DrawLine(new string('═', ContentWidth), '╠', '╣');
+        DrawLine(text);
+        DrawLine(new string('═', ContentWidth), '╚', '╝');
     }
 
     /// <summary>
