@@ -23,10 +23,7 @@ public class GameMode : BaseScreen
     {
         DrawHeader();
         DrawPadding(FormInput.Height * 2);
-        foreach (var input in _inputs)
-        {
-            input.ToString().Split('\n').ToList().ForEach(x => DrawLine('║', '║', x));
-        }
+        _inputs.ToList().ForEach(input => input.ToString().Split('\n').ToList().ForEach(x => DrawLine(x)));
         DrawPadding(FormInput.Height * 2);
         DrawFooter("Use right arrow key to change mode.");
     }

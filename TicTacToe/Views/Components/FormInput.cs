@@ -34,7 +34,7 @@ public partial class FormInput(string text, char? icon, int width, bool focused 
     /// <summary>
     /// Display text of the form input.
     /// </summary>
-    public virtual string Text => text;
+    public virtual string Text { get; set; } = text;
 
     /// <summary>
     /// Renders the input as a bordered string.
