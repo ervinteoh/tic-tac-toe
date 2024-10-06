@@ -28,6 +28,11 @@ public abstract class BaseScreen
     protected const int ContentHeight = 19;
 
     /// <summary>
+    /// Gets a value indicating whether the screen is currently visible.
+    /// </summary>
+    public bool Visible { get; protected set; } = true;
+
+    /// <summary>
     /// Draws a single line with optional content, centered between borders.
     /// </summary>
     /// <param name="content">Optional string content to display. If null, the line is blank.</param>
@@ -93,5 +98,11 @@ public abstract class BaseScreen
     /// <summary>
     /// Handle user input on the screen.
     /// </summary>
+    /// <returns>Returns <c>true</c> if the screen should stay opened; otherwise, <c>false</c></returns>
     public abstract void Input();
+
+    /// <summary>
+    /// Reset the screen.
+    /// </summary>
+    public abstract void Reset();
 }
