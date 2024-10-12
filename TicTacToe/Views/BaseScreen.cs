@@ -91,6 +91,19 @@ public abstract class BaseScreen
     }
 
     /// <summary>
+    /// Render the screen.
+    /// </summary>
+    /// <remarks>
+    /// Clears and draw the screen, then processes input.
+    /// </remarks>
+    public void Render()
+    {
+        Console.Clear();
+        Draw();
+        Input();
+    }
+
+    /// <summary>
     /// Draw the screen's content.
     /// </summary>
     public abstract void Draw();
