@@ -17,9 +17,29 @@ public class MainMenu : BaseScreen
     ];
 
     /// <summary>
+    /// Continue button.
+    /// </summary>
+    private readonly FormButton<Menu> _continueButton = new(Menu.ContinueGame, '→', ContentWidth * 80 / 100);
+
+    /// <summary>
     /// Selected menu option.
     /// </summary>
     public Menu? Selection { get; private set; }
+
+    /// <summary>
+    /// Sets the visibility of the continue button.
+    /// </summary>
+    /// <param name="isVisible">Button is visible.</param>
+    public void SetContinueButton(bool isVisible)
+    {
+        if (_inputs.Contains(_continueButton))
+            return;
+
+        if (isVisible)
+            _inputs.Insert(0, _continueButton);
+        else
+            _inputs.Remove(_continueButton);
+    }
 
     /// <inheritdoc />
     public override void Draw()
@@ -58,6 +78,15 @@ public class MainMenu : BaseScreen
             default:
                 break;
         }
+        Visible = Selection != Menu.ExitGame;
+    }
+
+    /// <inheritdoc />
+    public override void Reset()
+    {
+        Selection = null;
+        _inputs.ToList().ForEach(x => x.Focused = false);
+        _inputs.First().Focused = true;
     }
 }
 

@@ -31,6 +31,25 @@ public class BoardTests
     }
 
     /// <summary>
+    /// Tests the <see cref="Board.IsFull"/> property when all cells are filled should indicate board is full.
+    /// </summary>
+    [Test]
+    public void IsFull_WhenAllCellsNotNull_ReturnsTrue()
+    {
+        // Act
+        for (int row = 0; row < _board.Dimension; row++)
+        {
+            for (int col = 0; col < _board.Dimension; col++)
+            {
+                _board[row, col] = Hand.X;
+            }
+        }
+
+        // Assert
+        Assert.That(_board.IsFull, Is.True);
+    }
+
+    /// <summary>
     /// Tests that setting a value using the <see cref="Board"/> indexer updates the board cell correctly.
     /// </summary>
     [Test]

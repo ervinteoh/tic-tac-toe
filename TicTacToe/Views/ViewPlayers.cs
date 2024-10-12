@@ -9,8 +9,6 @@ public class ViewPlayers : BaseScreen
 
     private readonly IList<FormInput> _inputs = [];
 
-    public bool ReturnToMainMenu { get; private set; } = false;
-
     public ViewPlayers(IList<Player> players)
     {
         _players = players;
@@ -52,9 +50,11 @@ public class ViewPlayers : BaseScreen
                 }
                 break;
             case ConsoleKey.Enter:
-                ReturnToMainMenu = _inputs[_inputs.Count - 1].Focused;
-                if (ReturnToMainMenu)
-                    _players.ToList().ForEach(x => x.Name = _inputs[_players.IndexOf(x)].Text);
+                if (!_inputs[_inputs.Count - 1].Focused)
+                    break;
+
+                _players.ToList().ForEach(x => x.Name = _inputs[_players.IndexOf(x)].Text);
+                Visible = false;
                 break;
             case ConsoleKey.Backspace:
                 if (index == _players.Count)
@@ -78,5 +78,13 @@ public class ViewPlayers : BaseScreen
                     _inputs[index].Text += typedChar;
                 break;
         }
+    }
+
+    /// <inheritdoc />
+    public override void Reset()
+    {
+        Visible = true;
+        _inputs.ToList().ForEach(x => x.Focused = false);
+        _inputs.First().Focused = true;
     }
 }
