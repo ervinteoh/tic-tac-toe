@@ -14,9 +14,9 @@ public class GameMode : BaseScreen
     ];
 
     /// <summary>
-    /// Game mode confirmed.
+    /// Selected game mode.
     /// </summary>
-    public bool Confimed { get; private set; } = false;
+    public Mode? Selection { get; private set; }
 
     /// <inheritdoc />
     public override void Draw()
@@ -54,11 +54,20 @@ public class GameMode : BaseScreen
                     selectMode.Next();
                 break;
             case ConsoleKey.Enter:
+                var formSelect = (FormSelect<Mode>)_inputs.First();
                 if (index == _inputs.Count - 1)
-                    Confimed = true;
+                    Selection = formSelect.Selection;
                 break;
             default:
                 break;
         }
+        Visible = Selection == null;
+    }
+
+    /// <inheritdoc />
+    public override void Reset()
+    {
+        Selection = null;
+        Visible = true;
     }
 }

@@ -13,6 +13,11 @@ public class Board(int dimension)
     public int Dimension { get; } = dimension;
 
     /// <summary>
+    /// Gets a value indicating whether the board is full.
+    /// </summary>
+    public bool IsFull => _cells.Cast<Hand?>().All(cell => cell.HasValue);
+
+    /// <summary>
     /// Gets or sets the <see cref="Hand"/> at the specified row and column.
     /// </summary>
     /// <param name="row">The row index (0-based).</param>
