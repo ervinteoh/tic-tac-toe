@@ -9,7 +9,7 @@
     <Authors>Jie Sheng Teoh</Authors>
     <Description>A Tic-Tac-Toe game featuring multiple game variants.</Description>
     <Copyright>Jie Sheng Teoh © 2024</Copyright>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Product>Tic-Tac-Toe Game</Product>
     <RepositoryUrl>https://github.com/ervinteoh/tic-tac-toe</RepositoryUrl>
   </PropertyGroup>
