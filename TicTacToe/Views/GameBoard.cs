@@ -135,8 +135,13 @@ public class GameBoard(BaseGame game) : BaseScreen
                 break;
             case ConsoleKey.X:
             case ConsoleKey.O:
-                if (_game.CurrentHand?.ToString() != consoleKey.ToString() || _game.Winner != null)
+                var isWinnerExists = _game.Winner != null;
+                var isCellOccupied = _game.Board[SelectedRow, SelectedCol] != null;
+                var isDifferentHand = _game.CurrentHand?.ToString() != consoleKey.ToString();
+
+                if (isWinnerExists || isCellOccupied || isDifferentHand)
                     break;
+
                 _game.Board[SelectedRow, SelectedCol] = _game.CurrentHand;
                 _game.UpdateWinner();
                 _game.NextTurn();
