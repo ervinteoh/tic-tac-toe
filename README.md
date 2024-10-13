@@ -137,7 +137,7 @@ dotnet run --project TicTacToe
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Normal Tic Tac Toe
+- [x] Normal Tic Tac Toe
 - [ ] Misere Tic Tac Toe
 - [ ] Wild Tic Tac Toe
 - [ ] Four By Four Tic Tac Toe
